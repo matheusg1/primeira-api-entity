@@ -1,4 +1,5 @@
 using ApiMatheusGomes.Model;
+using ApiMatheusGomes.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,7 +30,8 @@ namespace ApiMatheusGomes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BookContext>(x => x.UseSqlite("Data source=books.db"));
-            services.AddControllers();
+            services.AddScoped<IBookRepository, BookRepository>();
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API Matheus Gomes", Version = "v1" });

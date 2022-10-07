@@ -1,34 +1,60 @@
 ﻿using ApiMatheusGomes.Model;
+using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiMatheusGomes.Repositories
 {
     public class BookRepository : IBookRepository
     {
-        Task<Book> IBookRepository.Create(Book book)
+        public readonly BookContext _context;
+        public BookRepository(BookContext context)
         {
-            throw new System.NotImplementedException();
+            _context = context;
         }
 
-        Task IBookRepository.Delete(int Id)
+        public async Task<Book> Create(Book book)
         {
-            throw new System.NotImplementedException();
+            _context.Books.Add(book);
+            await _context.SaveChangesAsync();
+            return book;
         }
 
-        Task<IEnumerable<Book>> IBookRepository.Get()
+        public async Task Delete(int id)
         {
-            throw new System.NotImplementedException();
+            var bookToDelete = await _context.Books.FindAsync(id);
+            _context.Books.Remove(bookToDelete);
+            await _context.SaveChangesAsync();
         }
 
-        Task<Book> IBookRepository.Get(int Id)
+        public async Task<IEnumerable<Book>> Get()
         {
-            throw new System.NotImplementedException();
+            return await _context.Books.ToListAsync();
         }
 
-        Task IBookRepository.Update(Book book)
+        public async Task<Book> Get(int id)
         {
-            throw new System.NotImplementedException();
+            return await _context.Books.FindAsync(id);
+        }
+
+        public async Task Update(Book book)
+        {
+            _context.Entry(book).State = EntityState.Modified;
+            //var bookToUpdate = await _context.Books.FindAsync(book);
+            //_context.Books.Update(bookToUpdate);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task Patch(int id, JsonPatchDocument bookModel)
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book != null)
+            {
+                bookModel.ApplyTo(book);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
