@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ApiMatheusGomes.Controllers
 {
+    [Route("api/[controller]")]
     [ApiController]
-    [Route("[controller]")]
-    public class ClienteController : ControllerBase
+    public class ClientController : ControllerBase
     {
 
         [HttpGet]

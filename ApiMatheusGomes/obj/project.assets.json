@@ -1447,11 +1447,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matheus.silva\\Documents\\Arquivos\\ApiMatheusGomes\\ApiMatheusGomes\\ApiMatheusGomes.csproj",
+      "projectUniqueName": "C:\\Users\\matheus.silva\\Documents\\ProjetosPessoais\\ApiMatheusGomes\\ApiMatheusGomes\\ApiMatheusGomes.csproj",
       "projectName": "ApiMatheusGomes",
-      "projectPath": "C:\\Users\\matheus.silva\\Documents\\Arquivos\\ApiMatheusGomes\\ApiMatheusGomes\\ApiMatheusGomes.csproj",
+      "projectPath": "C:\\Users\\matheus.silva\\Documents\\ProjetosPessoais\\ApiMatheusGomes\\ApiMatheusGomes\\ApiMatheusGomes.csproj",
       "packagesPath": "C:\\Users\\matheus.silva\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matheus.silva\\Documents\\Arquivos\\ApiMatheusGomes\\ApiMatheusGomes\\obj\\",
+      "outputPath": "C:\\Users\\matheus.silva\\Documents\\ProjetosPessoais\\ApiMatheusGomes\\ApiMatheusGomes\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\matheus.silva\\AppData\\Roaming\\NuGet\\NuGet.Config",

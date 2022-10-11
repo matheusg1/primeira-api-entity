@@ -17,26 +17,26 @@ namespace ApiMatheusGomes.Controllers
             _bookRepository = bookRepository;
         }
 
-        [HttpGet]
+        [HttpGet("getAllBooks")]
         public async Task<IEnumerable<Book>> GetBooks()
         {
             return await _bookRepository.Get();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("getBook/{id}")]
         public async Task<ActionResult<Book>> GetBooks(int id)
         {
             return await _bookRepository.Get(id);
         }
 
-        [HttpPost]
+        [HttpPost("addBook")]
         public async Task<ActionResult<Book>> PostBook([FromBody] Book book)
         {
             var newBook = await _bookRepository.Create(book);
             return CreatedAtAction(nameof(GetBooks), new { id = newBook.Id }, newBook);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("deleteBook/{id}")]
         public async Task<ActionResult<Book>> Delete(int id)
         {
             var bookToDelete = await _bookRepository.Get(id);
@@ -48,7 +48,7 @@ namespace ApiMatheusGomes.Controllers
             else
                 return NotFound();
         }
-        [HttpPut]
+        [HttpPut("editBook")]
         public async Task<ActionResult> PutBooks(int id, [FromBody] Book book)
         {
             if (id == book.Id)
@@ -61,7 +61,7 @@ namespace ApiMatheusGomes.Controllers
                 return BadRequest();
             }
         }
-        [HttpPatch("{id}")]
+        [HttpPatch("fixBook/{id}")]
         public async Task<ActionResult> PatchBook([FromRoute] int id, [FromBody] JsonPatchDocument bookModel)
         {
             await _bookRepository.Patch(id, bookModel);
